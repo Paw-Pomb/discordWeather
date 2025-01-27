@@ -32,9 +32,7 @@ class WeatherReportHandler:
                 for alert in weather_alert_output:
                     output += f"{alert}\n"
                 output += "\n"
-                output += self.format_weather_report(hourly_weather_response_data, city, config_handler, weather_logger)
-            else:
-                output += self.format_weather_report(hourly_weather_response_data, city, config_handler, weather_logger)
+            output += self.format_weather_report(hourly_weather_response_data, city, config_handler, weather_logger)
             return output
         except Exception as e:
             weather_logger.error(f"An error occurred while generating the report: {e}", exc_info=True)
