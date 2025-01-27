@@ -10,6 +10,7 @@ class WeatherReportHandler:
             if not geolocation_data:
                 raise ValueError("No geolocation data found for the query.")
             display_name = geolocation_data.get('display_name')
+            
             lat = geolocation_data.get('lat')
             lon = geolocation_data.get('lon')
             
@@ -84,6 +85,7 @@ class WeatherReportHandler:
     def isolate_city_from_display_name(self, state, county, display_name, country, weather_logger):
         display_name_list = display_name.split(',')
         full_state = state[1]
+        township = None
         zip_code_regex = r"^\d{5}(?:-\d{4})?$"
         for item in display_name_list[:]:
             if country and (item.lower().strip() == country.lower().strip()):
@@ -94,9 +96,14 @@ class WeatherReportHandler:
                 display_name_list.remove(item)
             if re.search(zip_code_regex, item.strip()):
                 display_name_list.remove(item)
+            if "township" in item.lower():
+                township = item
+                display_name_list.remove(item)
         if len(display_name_list) > 1:
             weather_logger.info(f"Extra item found in data: " + display_name_list[1])
             return display_name_list[0]
+        elif len(display_name_list) <= 0 and township != None:
+            return township
         else:
             return display_name_list[0]
         
