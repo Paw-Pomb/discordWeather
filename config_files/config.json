@@ -1,0 +1,8 @@
+{
+    "base_configs" : {
+        "geoCodingAPIKey" : "",
+        "defaultCountry" : "United States",
+        "defaultCountryCode" : "US",
+        "hourlyForecastRange" : 6
+    }
+}
