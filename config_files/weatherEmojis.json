@@ -1,0 +1,30 @@
+{
+    "isDaytime" : {
+        "partly" : {
+            "sun" : "⛅",
+            "cloudy" : "🌤️"
+        },
+        "mostly" : {
+            "sun" : "🌤️",
+            "cloudy" : "🌥️"
+        },
+        "standard": {
+            "clear": "☀️",
+            "cloudy" : "☁️",
+            "rain" : "🌧️",
+            "snow" : "🌨️",
+            "thunder" : "⛈️",
+            "sun" : "☀️",
+            "fog" : "🌁"
+        }
+    },
+    "isNotDayTime" : {
+            "clear": "🌙",
+            "cloudy" : "☁️",
+            "rain" : "🌧️",
+            "snow" : "🌨️",
+            "thunder" : "⛈️",
+            "fog" : "🌁"
+    },
+    "unknownValue" : "❓"
+}
