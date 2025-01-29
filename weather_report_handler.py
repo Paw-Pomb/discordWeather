@@ -30,7 +30,7 @@ class WeatherReportHandler:
             if weather_alert_output != None and len(weather_alert_output) > 0:
                 output += "**Weather Alert(s):** \n"
                 for alert in weather_alert_output:
-                    output += f"{alert}\n"
+                    output += f"> {alert}\n"
                 output += "\n"
             output += self.format_weather_report(hourly_weather_response_data, city, config_handler, weather_logger)
             return output
@@ -50,7 +50,7 @@ class WeatherReportHandler:
         hourly_forecast_url = weather_data.get('properties', {}).get("forecastHourly")
         hourly_forecast_data = config_handler.reformat_json(requests.get(hourly_forecast_url))
         periods = hourly_forecast_data.get('properties', {}).get('periods', [])
-        forecast_range = config_handler.get_config('hourlyForecastRange')
+        forecast_range = int(config_handler.get_config('hourlyForecastRange'))
         return [{"sub_periods": periods[:forecast_range]}]
     
     def get_weather_alert_output(self, state, county, city, weather_alert_data, config_handler, weather_logger):
@@ -158,7 +158,7 @@ class WeatherReportHandler:
             emoji = self._determine_emoji(entry.get("isDaytime"), short_forecast, emoji_file, weather_logger)
             temp = f"{entry.get('temperature')}{entry.get('temperatureUnit')}"
             precip = f"{entry.get('probabilityOfPrecipitation').get('value')}%"
-            output += f"**{hour}:** {emoji} {short_forecast}, Temp: {temp}, Precip: {precip}\n"
+            output += f"> **{hour}:** {emoji} {short_forecast}, Temp: {temp}, Precip: {precip}\n"
         return output
 
     def _determine_emoji(self, is_daytime, short_forecast, emoji_file, weather_logger):
