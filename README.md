@@ -1,6 +1,6 @@
 # Weather Bot Cog
 
-This cog utilizes the GeoCoding API and requires an API key from [geocode.maps.co](https://geocode.maps.co/).
+This cog utilizes the GeoCoding API, the National Weather Service's API and requires an API key from [geocode.maps.co](https://geocode.maps.co/).
 
 ## Setup
 
